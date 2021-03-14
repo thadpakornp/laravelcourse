@@ -14,7 +14,39 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <table class="table">
+                        <tr>
+                            <td>
+                                ชื่อ
+                            </td>
+                            <td>
+                                รายละเอียด
+                            </td>
+                            <td>
+                                ราคา
+                            </td>
+                            <td>
+                                Actions
+                            </td>
+                        </tr>
+                        @foreach ($stores as $store)
+                        <tr>
+                            <td>
+                                {{ $store->name }}
+                            </td>
+                            <td>
+                                {{ $store->description }}
+                            </td>
+                            <td>
+                                {{ $store->price }}
+                            </td>
+                            <td>
+                                <a href="{{ route('form-delete',$store->id) }}" class="text-warning">ลบ</a>
+                                <a href="{{ route('form-edit',$store->id) }}" class="text-danger">แก้ไข</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
                 </div>
             </div>
         </div>

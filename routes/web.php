@@ -33,4 +33,9 @@ Route::get('/testmysql', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('/store', [App\Http\Controllers\HomeController::class, 'store'])->name('store');
+Route::get('/form-save', [App\Http\Controllers\HomeController::class, 'formsave'])->name('form-save');
+Route::post('/form-save-store', [App\Http\Controllers\HomeController::class, 'formsavestore'])->name('form-save-store');
+
+Route::get('/form-delete/{id}', [App\Http\Controllers\HomeController::class, 'formdelete'])->name('form-delete');
+Route::get('/form-edit/{id}', [App\Http\Controllers\HomeController::class, 'formedit'])->name('form-edit');
+Route::post('/form-save-edit', [App\Http\Controllers\HomeController::class, 'formsaveedit'])->name('form-save-edit');

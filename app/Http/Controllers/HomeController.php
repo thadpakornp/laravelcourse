@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Store;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,17 +24,67 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $stores = Store::get();
+
+        return view('home', compact('stores'));
     }
 
-    public function store(Request $request)
+    public function formsave()
     {
-        Store::create([
-            'name' => $request->input('name')
-        ]);
+        return view('formsave');
+    }
 
-        $store = new Store;
-        $store->name = $request->input('name');
-        $store->save();
+    public function formsavestore(Request $request)
+    {
+        $name = $request->input('storename');
+        $description = $request->input('description');
+        $price = $request->input('price');
+
+        // $store = Store::create($request->all());
+        $store = Store::create([
+            'name' => $name,
+            'description' => $description,
+            'price' => $price,
+        ]);
+        if ($store) {
+            if ($request->hasFile('img')) {
+                $img = $request->file('img');
+                $img->move(public_path(), $img->getClientOriginalName());
+                Store::find($store->id)->update(['img' => $img]);
+            }
+            return redirect()->to('/home');
+        }
+    }
+
+    public function formdelete($id)
+    {
+        Store::destroy($id);
+        return back();
+    }
+
+    public function formedit($id)
+    {
+        $store = Store::find($id);
+
+        return view('formedit', compact('store'));
+    }
+
+    public function formsaveedit(Request $request)
+    {
+        $data = [
+            'name' => $request->input('storename'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+        ];
+        Store::find($request->input('id'))->update($data);
+
+        // Store::find($request->input('id'))->update([
+        //     'name' => $request->input('name'),
+        //     'description' => $request->input('description'),
+        //     'price' => $request->input('price'),
+        // ]);
+
+        // Store::find($request->input('id'))->update($request->all());
+        return redirect()->to('/home');
     }
 }
