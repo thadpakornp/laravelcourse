@@ -53,6 +53,9 @@
                             @endif
                         @else
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('users') }}">ผู้ใช้งาน</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('form-save') }}">เพิ่มข้อมูลสินค้า</a>
                             </li>
                             <li class="nav-item dropdown">

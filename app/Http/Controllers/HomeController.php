@@ -3,19 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Store;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -24,7 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $stores = Store::get();
+        $stores = Store::with(['users'])->Get30bath()->get();
 
         return view('home', compact('stores'));
     }
@@ -86,5 +78,12 @@ class HomeController extends Controller
 
         // Store::find($request->input('id'))->update($request->all());
         return redirect()->to('/home');
+    }
+
+    public function users()
+    {
+        $users = User::get(['name', 'email', 'user_type']); // User::all();
+
+        return view('users', compact('users'));
     }
 }

@@ -20,37 +20,22 @@
                                 ชื่อ
                             </td>
                             <td>
-                                รายละเอียด
+                                Email
                             </td>
                             <td>
-                                ราคา
-                            </td>
-                            <td>
-                                เจ้าของ
-                            </td>
-                            <td>
-                                Actions
+                                ระดับสิทธิ์
                             </td>
                         </tr>
-                        @foreach ($stores as $store)
+                        @foreach ($users as $user)
                         <tr>
                             <td>
-                                {{ $store->name }}
+                                {{ $user->name }}
                             </td>
                             <td>
-                                {{ $store->description }}
+                                {{ $user->email }}
                             </td>
                             <td>
-                                {{ $store->price }}
-                            </td>
-                            <td>
-                                @foreach ($store->users as $user)
-                                    {{ $user->name }}
-                                @endforeach
-                            </td>
-                            <td>
-                                <a href="{{ route('form-delete',$store->id) }}" class="text-warning">ลบ</a>
-                                <a href="{{ route('form-edit',$store->id) }}" class="text-danger">แก้ไข</a>
+                                {{ $user->user_type }}
                             </td>
                         </tr>
                         @endforeach
