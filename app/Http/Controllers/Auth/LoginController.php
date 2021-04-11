@@ -33,10 +33,10 @@ class LoginController extends Controller
         $role = Auth::user()->user_type;
         switch ($role) {
             case 'admin':
-                return redirect()->route('admin.home');
+                return route('admin.home');
                 break;
             default:
-                return redirect()->route('home');
+                return route('home');
                 break;
         }
     }
