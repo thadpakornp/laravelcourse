@@ -35,6 +35,7 @@ class HomeController extends Controller
         // $store = Store::create($request->all());
         $store = Store::create([
             'name' => $name,
+            'user_id' => auth()->user()->id,
             'description' => $description,
             'price' => $price,
         ]);
@@ -42,9 +43,9 @@ class HomeController extends Controller
             if ($request->hasFile('img')) {
                 $img = $request->file('img');
                 $img->move(public_path(), $img->getClientOriginalName());
-                Store::find($store->id)->update(['img' => $img]);
+                Store::find($store->id)->update(['img' => $img->getClientOriginalName()]);
             }
-            return redirect()->to('/home');
+            return redirect()->to('/admin/home');
         }
     }
 
@@ -69,15 +70,7 @@ class HomeController extends Controller
             'price' => $request->input('price'),
         ];
         Store::find($request->input('id'))->update($data);
-
-        // Store::find($request->input('id'))->update([
-        //     'name' => $request->input('name'),
-        //     'description' => $request->input('description'),
-        //     'price' => $request->input('price'),
-        // ]);
-
-        // Store::find($request->input('id'))->update($request->all());
-        return redirect()->to('/home');
+        return redirect()->to('/admin/home');
     }
 
     public function users()

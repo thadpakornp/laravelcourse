@@ -20,6 +20,9 @@
                                 ชื่อ
                             </td>
                             <td>
+                                รูป
+                            </td>
+                            <td>
                                 รายละเอียด
                             </td>
                             <td>
@@ -38,19 +41,20 @@
                                 {{ $store->name }}
                             </td>
                             <td>
+                                <img src="{{ asset($store->img) }}" width="80" height="80">
+                            </td>
+                            <td>
                                 {{ $store->description }}
                             </td>
                             <td>
                                 {{ $store->price }}
                             </td>
                             <td>
-                                @foreach ($store->users as $user)
-                                    {{ $user->name }}
-                                @endforeach
+                                {{ $store->users->name }}
                             </td>
                             <td>
-                                <a href="{{ route('form-delete',$store->id) }}" class="text-warning">ลบ</a>
-                                <a href="{{ route('form-edit',$store->id) }}" class="text-danger">แก้ไข</a>
+                                <a href="{{ route('admin.form-delete',$store->id) }}" class="text-warning">ลบ</a>
+                                <a href="{{ route('admin.form-edit',$store->id) }}" class="text-danger">แก้ไข</a>
                             </td>
                         </tr>
                         @endforeach

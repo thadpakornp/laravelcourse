@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form action="{{ route('form-save-edit') }}" method="POST">
+    <form action="{{ route('admin.form-save-edit') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id" value="{{ $store->id }}">
         <input type="text" name="storename" class="form-control" placeholder="ชื่อร้านค้า" value="{{ $store->name }}">

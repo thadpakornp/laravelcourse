@@ -15,14 +15,7 @@ class Store extends Model
 
     public function users()
     {
-        // 1 - 1
-        // return $this->hasOne(User::class, 'id', 'user_id');
-
-        //1 - many
-        return $this->hasMany(User::class, 'id', 'user_id');
-
-        // //many - many
-        // return $this->hasMany(User::class, 'id', 'user_id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
     public function scopeGet30bath($query)

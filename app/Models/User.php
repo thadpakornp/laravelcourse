@@ -44,19 +44,11 @@ class User extends Authenticatable
 
     public function stores()
     {
-        // return $this->belongsToMany(Store::class);
         return $this->belongsTo(Store::class);
     }
 
     public function getUsertypeAttribute($user_type)
     {
-        //if($this->user_type == 0){
-        // $user = 'admin';
-        // } else {
-        // $user = 'user';
-        // }
-        // return $user;
-
         return $user_type == 0 ? 'admin' : 'user';
     }
 }

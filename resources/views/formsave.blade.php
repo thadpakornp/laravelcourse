@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form action="{{ route('form-save-store') }}" method="POST">
+    <form action="{{ route('admin.form-save-store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="text" name="storename" class="form-control" placeholder="ชื่อร้านค้า">
         <input type="text" name="description" class="form-control" placeholder="รายละเอียดร้านค้า">

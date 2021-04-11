@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,13 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\ShopController::class, 'index'])->name('home');
 
 Auth::routes();
 
-Route::middleware(['auth', 'isadmin'])->prefix('admin')->group(function () {
+Route::middleware(['auth', 'isadmin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/form-save', [App\Http\Controllers\HomeController::class, 'formsave'])->name('form-save');
     Route::post('/form-save-store', [App\Http\Controllers\HomeController::class, 'formsavestore'])->name('form-save-store');
@@ -30,3 +29,12 @@ Route::middleware(['auth', 'isadmin'])->prefix('admin')->group(function () {
 
     Route::get('/users', [App\Http\Controllers\HomeController::class, 'users'])->name('users');
 });
+
+Route::middleware(['auth'])->prefix('shop')->name('shop.')->group(function() {
+    Route::get('/addcart/{id}', [App\Http\Controllers\ShopController::class, 'addcart'])->name('addcart');
+    Route::get('/cart', [App\Http\Controllers\ShopController::class, 'cart'])->name('cart');
+    Route::get('/cartremove/{id}', [App\Http\Controllers\ShopController::class, 'cartremove'])->name('cartremove');
+    Route::get('/clear', [App\Http\Controllers\ShopController::class, 'clear'])->name('clear');
+    Route::get('/orders', [App\Http\Controllers\ShopController::class, 'orders'])->name('orders');
+});
+
