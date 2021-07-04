@@ -2,6 +2,8 @@
 
 return [
 
+    'token_allow_api' => '12345678',
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -175,7 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
-
+        Laravel\Passport\PassportServiceProvider::class,
     ],
 
     /*
