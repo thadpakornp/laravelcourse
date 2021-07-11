@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LineController;
+use App\Http\Controllers\ControllerHaveResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::middleware('protectapi')->prefix('v1')->group(function () {
     Route::get('/index', [LineController::class, 'index']);
@@ -27,3 +28,5 @@ Route::middleware('protectapi')->prefix('v1')->group(function () {
 Route::prefix('v1')->group(function () {
     Route::post('/login', [LineController::class, 'login']);
 });
+
+Route::resource('/users', [ControllerHaveResource::class]);
