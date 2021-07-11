@@ -21,12 +21,13 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::middleware('protectapi')->prefix('v1')->group(function () {
-    Route::get('/index', [LineController::class, 'index']);
+    // Route::get('/index', [LineController::class, 'index']);
+    Route::post('/getLineData', [LineController::class, 'getLineData'])->name('getLineData');
 });
 
 
-Route::prefix('v1')->group(function () {
-    Route::post('/login', [LineController::class, 'login']);
-});
+// Route::prefix('v1')->group(function () {
+//     Route::post('/login', [LineController::class, 'login']);
+// });
 
-Route::resource('/users', [ControllerHaveResource::class]);
+// Route::resource('/users', [ControllerHaveResource::class]);

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Line;
+use App\Helpers\Loggin;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Crypt;
@@ -34,5 +36,41 @@ class LineController extends Controller
             'token_type' => 'Bearer'
         ];
         return response()->json($data);
+    }
+
+    public function getLineData(Request $request)
+    {
+        $array = ['ซื้อ'];
+        $data = $request->all();
+        $text = Loggin::save($data);
+
+        //สั่งซื้อ
+        if (in_array($array, $text)) {
+            $this->store($data);
+        } elseif ($text['text'] == 'ขายอะไร') {
+            $d = $this->description();
+
+            $jsonReply["replyToken"] = $text['replyToken'];
+            $jsonReply["messages"][0] = $d;
+
+            $result = Line::Pushback($jsonReply);
+        } elseif ($text['text'] == 'ใครอยากรับอะไรไหม') {
+            $this->sell($data);
+        }
+    }
+
+    private function store($req)
+    {
+    }
+
+    private function description()
+    {
+        //connect get data from database
+        // $return from database;
+        return 'D';
+    }
+
+    private function sell($data)
+    {
     }
 }

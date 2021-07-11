@@ -4,6 +4,9 @@ return [
 
     'token_allow_api' => '12345678',
 
+    'LineReplyURL' => 'https://api.line.me/v2/bot/message/reply',
+    'LineAccessToken' => 'qIb6Ox4fNnZrV7JwUfwZJhHNdH2GGEYhnYTd+/Qov2O2Zpn0MUC6d60ACAjf80/Epf1aviADaxf981NMZXcsszx0qU0xPVLBdgluDPCuNchbQqq9OUmfr2HSfxsGBfTJLbJHjmd0h9dTy4RwlgszYAdB04t89/1O/w1cDnyilFU=',
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
