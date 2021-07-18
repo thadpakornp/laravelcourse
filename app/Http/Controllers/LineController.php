@@ -94,6 +94,7 @@ class LineController extends Controller
             return $arr_str[$indexBath];
         }
 
+        // $this->searchwording($textsult, " ");
 
 
         //สั่งซื้อ
@@ -109,6 +110,22 @@ class LineController extends Controller
         // } elseif ($text['text'] == 'ใครอยากรับอะไรไหม') {
         //     $this->sell($data);
         // }
+    }
+
+    private function searchwording($text, $wording)
+    {
+        strstr($text, $wording);
+        $arr_str = explode($wording, $text);
+
+        return $arr_str; //wording
+    }
+
+    private function searchwordings($text, $wording)
+    {
+        strstr($text, $wording);
+        $arr_str = explode($wording, $text);
+
+        return $arr_str; //text , index
     }
 
     // private function store($req)
