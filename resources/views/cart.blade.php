@@ -79,4 +79,10 @@
         </table>
     </div>
     </body>
+
+    <script>
+        $(document).ready(function() {
+            $indexB = $arr_str.indexOf("บาท"); //return 5
+        })
+    </script>
 </html>

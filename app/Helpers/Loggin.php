@@ -13,16 +13,16 @@ class Loggin
             $LineData = [
                 'userID' => $data["events"][0]["source"]["userId"],
                 'text' => $data["events"][0]["message"]["text"],
-                'type' => $data["events"][0]["message"]["type"],
-                'replyToken' => $data["events"][0]["replyToken"],
+                // 'type' => $data["events"][0]["message"]["type"],
+                // 'replyToken' => $data["events"][0]["replyToken"],
                 // 'recivedtime' => $data["events"][0]["timestamp"],
                 // 'jsonData' => $data
             ];
 
-            if ($LineData['type'] == 'text') {
+            if ($data["events"][0]["message"]["type"] == 'text') {
                 LogginLine::create($LineData);
             }
-            return $data;
+            return $LineData;
         } catch (\Throwable $th) {
             file_put_contents('error_loggin_' . date('YmdHis'), $th->getMessage());
         }
