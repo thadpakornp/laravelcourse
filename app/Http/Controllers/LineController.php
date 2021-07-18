@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Http\Controllers\HomeController;
 
 class LineController extends Controller
 {
@@ -110,6 +111,9 @@ class LineController extends Controller
         // } elseif ($text['text'] == 'ใครอยากรับอะไรไหม') {
         //     $this->sell($data);
         // }
+
+
+        // HomeController::formsavestore($request);
     }
 
     private function searchwording($text, $wording)
